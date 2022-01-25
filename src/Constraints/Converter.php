@@ -62,10 +62,20 @@ abstract class Converter
         if (is_null(self::$cache)) {
             self::$cache = $dataArray;
         }
-        // 使用反射读取属性值
-        $instance = new ReflectionClass(is_string($className) ? trim($className, '?') : $className);
-        // 创建实例对象
-        $object = $instance->newInstanceWithoutConstructor();
+
+        // 判断是否本身就是对象
+        if (is_object($className)) {
+            // 使用反射读取属性值
+            $instance = new ReflectionClass($className);
+            // 本身传递的就是对象直接复用
+            $object = $className;
+        } else {
+            // 使用反射读取属性值
+            $instance = new ReflectionClass(trim($className, '?'));
+            // 创建实例对象
+            $object = $instance->newInstanceWithoutConstructor();
+        }
+
         // 读取属性列表
         $properties = $instance->getProperties();
         // 循环处理属性值
