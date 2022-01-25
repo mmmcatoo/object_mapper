@@ -64,7 +64,7 @@ class Skeleton
             // 对Key进行处理
             $writeKey = preg_replace_callback('/([-_]+\w)/', function ($group) {
                 return strtoupper(trim($group[0], '-_'));
-            }, strtolower($key));
+            }, $key);
             // 读取字段类型
             $rawType = gettype($value);
             $types = $this->convert[$rawType] ?? $rawType;
