@@ -34,13 +34,29 @@ abstract class Converter
     public abstract function unmarshal(string $text, string $className): object;
 
     /**
+     * @param array $dataArray 原始数据
+     * @param string $className 类的名称
+     * @return object
+     * @throws ReflectionException
+     */
+    public abstract function decode(array $dataArray, string $className): object;
+
+    /**
+     * @param array $dataArray 原始数据
+     * @param object $instance 类对象
+     * @return void
+     * @throws ReflectionException
+     */
+    public abstract function readValue(array $dataArray, object $instance): void;
+
+    /**
      * 将数组转换为对象
      * @param array $dataArray 数组类型的数据集合
-     * @param string $className 类的名称
+     * @param string|object $className 类的名称
      * @return object 实例且赋值之后的类
      * @throws ReflectionException
      */
-    protected function convert(array $dataArray, string $className): object
+    protected function convert(array $dataArray, string|object $className): object
     {
         // 设置原始内容
         if (is_null(self::$cache)) {

@@ -16,4 +16,14 @@ class JsonConverter extends Converter
         }
         return $this->convert($dataArray, $className);
     }
+
+    public function decode(array $dataArray, string $className): object
+    {
+        return $this->convert($dataArray, $className);
+    }
+
+    public function readValue(array $dataArray, object $instance): void
+    {
+        $this->convert($dataArray, $instance);
+    }
 }
