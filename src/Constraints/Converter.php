@@ -63,7 +63,7 @@ abstract class Converter
             self::$cache = $dataArray;
         }
         // 使用反射读取属性值
-        $instance = new ReflectionClass(trim($className, '?'));
+        $instance = new ReflectionClass(is_string($className) ? trim($className, '?') : $className);
         // 创建实例对象
         $object = $instance->newInstanceWithoutConstructor();
         // 读取属性列表
