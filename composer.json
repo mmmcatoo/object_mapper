@@ -1,0 +1,21 @@
+{
+  "name": "mmmcatoo/object_mapper",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "mmmcatoo",
+      "email": "mmmcatoo@qq.com"
+    }
+  ],
+  "require": {
+    "php": ">8.0",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "ObjectMapper\\": "src/"
+    }
+  }
+}
